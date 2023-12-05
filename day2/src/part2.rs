@@ -6,10 +6,6 @@ use nom::{
 };
 use std::fs::read_to_string;
 
-const MAX_RED: u32 = 12;
-const MAX_GREEN: u32 = 13;
-const MAX_BLUE: u32 = 14;
-
 #[derive(Debug, PartialEq)]
 struct Game {
     id: u32,
