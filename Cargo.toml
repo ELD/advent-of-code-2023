@@ -1,7 +1,10 @@
 [workspace]
 members = [
-  "day1",
+  "day*/",
 ]
 
 resolver = "2"
+
+[workspace.dependencies]
+nom = "7"
 
