@@ -52,7 +52,7 @@ fn calculate_power_sets(games: &[Game]) -> u32 {
                     Cube::Blue(quantity) if quantity > &max_blue => max_blue = *quantity,
                     _ => {},
                 };
-            })
+            });
         });
         max_red * max_green * max_blue
     }).sum()

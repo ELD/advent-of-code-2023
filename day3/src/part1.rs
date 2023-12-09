@@ -37,11 +37,11 @@ fn sum_part_numbers(grid: &Grid) -> u32 {
         .collect::<Vec<_>>();
     let coords_to_check = calculate_adjacencies(grid, &symbols);
 
-    coords_to_check.iter().for_each(|&(x, y)| {
+    for &(x, y) in &coords_to_check {
         if let ref cell @ CellType::Number { .. } = grid[y][x].cell_type {
             part_numbers.insert(cell);
         }
-    });
+    }
 
     part_numbers
         .iter()
@@ -76,7 +76,7 @@ fn calculate_adjacencies(grid: &Grid, symbols: &[&GridCell]) -> HashSet<(usize, 
             adjacencies
                 .iter()
                 .filter(|(x, y)| *x < bound_x && *y < bound_y)
-                .cloned()
+                .copied()
                 .collect::<Vec<_>>()
         })
         .collect::<HashSet<(usize, usize)>>()

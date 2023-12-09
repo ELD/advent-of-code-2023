@@ -42,11 +42,11 @@ fn calculate_gear_ratios(grid: &Grid) -> u32 {
         .iter()
         .map(|star_adjacencies| {
             let mut parts = HashSet::new();
-            star_adjacencies.iter().for_each(|&(x, y)| {
+            for &(x, y) in star_adjacencies {
                 if let ref cell @ CellType::Number { .. } = grid[y][x].cell_type {
                     parts.insert(cell);
                 }
-            });
+            }
 
             if parts.len() != 2 {
                 return 0;
@@ -65,31 +65,6 @@ fn calculate_gear_ratios(grid: &Grid) -> u32 {
         })
         .sum::<u32>()
 }
-
-// fn sum_part_numbers(grid: &Grid) -> u32 {
-//     let mut part_numbers = HashSet::new();
-//     let symbols = grid
-//         .iter()
-//         .flatten()
-//         .filter(|cell| matches!(cell.cell_type, CellType::Symbol))
-//         .collect::<Vec<_>>();
-//     let coords_to_check = calculate_adjacencies(grid, &symbols);
-//
-//     coords_to_check.iter().for_each(|&(x, y)| {
-//         if let ref cell @ CellType::Number { .. } = grid[y][x].cell_type {
-//             part_numbers.insert(cell);
-//         }
-//     });
-//
-//     part_numbers
-//         .iter()
-//         .filter(|cell| matches!(cell, CellType::Number { .. }))
-//         .map(|cell| match cell {
-//             CellType::Number { value, .. } => value,
-//             _ => unreachable!(),
-//         })
-//         .sum()
-// }
 
 fn calculate_adjacencies(grid: &Grid, symbols: &[&GridCell]) -> Vec<Vec<(usize, usize)>> {
     let bound_y = grid.len();
@@ -114,7 +89,7 @@ fn calculate_adjacencies(grid: &Grid, symbols: &[&GridCell]) -> Vec<Vec<(usize, 
             adjacencies
                 .iter()
                 .filter(|(x, y)| *x < bound_x && *y < bound_y)
-                .cloned()
+                .copied()
                 .collect::<Vec<_>>()
         })
         .collect::<Vec<Vec<(usize, usize)>>>()
