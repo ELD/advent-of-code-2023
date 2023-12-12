@@ -5,6 +5,12 @@ members = [
 
 resolver = "2"
 
+[profile.release]
+debug = 1
+
 [workspace.dependencies]
 nom = "7"
+rayon = "1"
+indicatif = { version = "0.17", features = ["rayon"] }
+dhat = "0.3"
 
