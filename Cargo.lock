@@ -134,6 +134,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "day6"
+version = "0.1.0"
+
+[[package]]
 name = "dhat"
 version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
